@@ -18,11 +18,17 @@ const productsFromAPi = [
 export default class LifeCycleClass extends React.Component {
 	constructor () {
 		super()
-		console.log('ini constructor!')
-	}
 
-	state = {
-		products: []
+		this.state = {
+			totalPrice: 0,
+			products: [],
+			carts: [
+				{
+					name: 'Sikat Gigi',
+					price: 5000
+				}
+			]
+		}
 	}
 
 	componentDidMount () {
@@ -45,16 +51,45 @@ export default class LifeCycleClass extends React.Component {
 				<p>Daftar Produk:</p>
 
 				<ul>
-					{this.state.products.map(
-						function (product) {
-							return (
-								<li>{product.name}</li>
-							)
-						}
+					{this.state.products.map((product) =>
+						<li>
+							{product.name} |
+							Rp. {product.price} |
+							<button>+ Keranjang</button>
+						</li>
 					)}
 				</ul>
+
+				{/* ======= ini keranjang =========== */}
+
+				<p>Daftar Keranjang:</p>
+
+				<ul>
+					{this.state.carts.map((carts) =>
+						<li>
+							{carts.name} |
+							Rp. {carts.price}
+						</li>
+					)}
+				</ul>
+
+				<p>Total Harga: {this.state.totalPrice}</p>
 
 			</>
 		);
 	}
 }
+
+
+
+// ini dokumen asli superfunction
+
+{/* <ul>
+	{this.state.products.map(
+		function (product) {
+			return (
+				<li>{product.name}</li>
+			)
+		}
+	)}
+</ul> */}
