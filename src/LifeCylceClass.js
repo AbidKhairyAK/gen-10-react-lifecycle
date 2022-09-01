@@ -30,12 +30,18 @@ export default class LifeCycleClass extends React.Component {
 		this.setState({ products: productsFromAPi })
 	}
 
-	componentDidUpdate () {
-		console.log('ini componentDidUpdate')
-	}
+	componentDidUpdate (prevProps, prevState) {
+		if (prevState.carts.length !== this.state.carts.length ) {
 
-	componentWillUnmount () {
-		console.log('ini componentWillUnmount')
+			let totalHarga = 0;
+
+			for (const cart of this.state.carts) {
+				totalHarga = totalHarga + cart.price
+			}
+
+			this.setState({ totalPrice: totalHarga })
+
+		}
 	}
 
 	tambahkanKeKeranjang (produkYangAkanDitambahkan) {
@@ -49,6 +55,8 @@ export default class LifeCycleClass extends React.Component {
 
 		return (
 			<>
+				<p>Total Harga: {this.state.totalPrice}</p>
+
 				<p>Daftar Produk:</p>
 
 				<ul>
@@ -76,9 +84,6 @@ export default class LifeCycleClass extends React.Component {
 						</li>
 					)}
 				</ul>
-
-				<p>Total Harga: {this.state.totalPrice}</p>
-
 			</>
 		);
 	}
