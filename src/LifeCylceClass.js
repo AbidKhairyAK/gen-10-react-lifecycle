@@ -22,12 +22,7 @@ export default class LifeCycleClass extends React.Component {
 		this.state = {
 			totalPrice: 0,
 			products: [],
-			carts: [
-				{
-					name: 'Sikat Gigi',
-					price: 5000
-				}
-			]
+			carts: []
 		}
 	}
 
@@ -43,6 +38,12 @@ export default class LifeCycleClass extends React.Component {
 		console.log('ini componentWillUnmount')
 	}
 
+	tambahkanKeKeranjang (produkYangAkanDitambahkan) {
+		const keranjangSekarang = [...this.state.carts] // titik tiga / destructor pada javascript
+		keranjangSekarang.push(produkYangAkanDitambahkan)
+		this.setState({ carts: keranjangSekarang })
+	}
+
 	render () {
 		console.log('ini render!')
 
@@ -55,7 +56,10 @@ export default class LifeCycleClass extends React.Component {
 						<li>
 							{product.name} |
 							Rp. {product.price} |
-							<button>+ Keranjang</button>
+
+							<button onClick={() => this.tambahkanKeKeranjang(product)}>
+								+ Keranjang
+							</button>
 						</li>
 					)}
 				</ul>
