@@ -19,18 +19,31 @@ export default class LatihanLifeCycle extends React.Component {
   constructor() {
     super();
     this.state = {
+      totalHarga : 0,
       products: [],
       carts: [
-        {
+        /*{
           nama: "mouse",
           harga: 50000,
-        },
+        },*/
       ],
     };
   }
 
   componentDidMount() {
     this.setState({ products: productFromApi });
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if(prevState.carts.length !== this.state.carts.length ){
+      let totalHarga = 0;
+      for(let cart of this.state.carts){
+        totalHarga = totalHarga + cart.harga
+      }
+
+      this.setState({totalHarga: totalHarga})
+    }
+
   }
 
   tambahKeranjang(produkYangDitambahkan) {
@@ -42,6 +55,7 @@ export default class LatihanLifeCycle extends React.Component {
   render() {
     return (
       <div>
+        <p>Total Harga: {this.state.totalHarga}</p>
         Daftar produk
         <ul>
           {this.state.products.map((barang) => (
