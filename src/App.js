@@ -1,10 +1,9 @@
-import './App.css';
-import LifeCycleClass from './LifeCylceClass';
+import "./App.css";
+import LifeCycleClass from "./LifeCylceClass";
+import LatihanLifeCycle from "./latihanLifeCycle";
 
 function App() {
-  return (
-    <LifeCycleClass />
-  );
+  return <LatihanLifeCycle />;
 }
 
 export default App;
