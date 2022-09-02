@@ -17,6 +17,13 @@ const productsFromAPi = [
 
 export default function LifeCycleFunction () {
 	const [products, setProducts] = useState([])
+	const [carts, setCarts] = useState([])
+
+	function tambahkanKeKeranjang (produkYangAkanDitambahkan) {
+		const keranjangSekarang = [...carts]
+		keranjangSekarang.push(produkYangAkanDitambahkan)
+		setCarts(keranjangSekarang)
+	}
 
 	useEffect(() => {
 		setProducts(productsFromAPi)
@@ -30,17 +37,25 @@ export default function LifeCycleFunction () {
 			{products.map(product =>
 				<li>
 					{product.name} | Rp. {product.price}
-					<button>+ keranjang</button>
+
+					<button onClick={() => tambahkanKeKeranjang(product)}>
+						+ keranjang
+					</button>
 				</li>
 			)}
 		</ul>
 
 		<h4>Daftar Keranjang:</h4>
 		<ul>
-			<li>
-				namaproduk | Rp. Hargaproduk
-				<button>- hapus</button>
-			</li>
+			{carts.map(cart =>
+				<li>
+					{cart.name} | Rp. {cart.price}
+
+					<button>
+						- hapus
+					</button>
+				</li>
+			)}
 		</ul>
 	</>
 }
