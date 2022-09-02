@@ -51,8 +51,8 @@ export default function LifeCycleFunction () {
 
 		<h4>Daftar Produk:</h4>
 		<ul>
-			{products.map(product =>
-				<li>
+			{products.map((product, productIndex) =>
+				<li key={productIndex}>
 					{product.name} | Rp. {product.price}
 
 					<button onClick={() => tambahkanKeKeranjang(product)}>
@@ -64,11 +64,11 @@ export default function LifeCycleFunction () {
 
 		<h4>Daftar Keranjang:</h4>
 		<ul>
-			{carts.map((cart, indexCart) =>
-				<li>
-					{indexCart} . {cart.name} | Rp. {cart.price}
+			{carts.map((cart, keyCart) =>
+				<li key={keyCart}>
+					{keyCart} . {cart.name} | Rp. {cart.price}
 
-					<button onClick={() => hapusKeranjang(indexCart)}>
+					<button onClick={() => hapusKeranjang(keyCart)}>
 						- hapus
 					</button>
 				</li>
