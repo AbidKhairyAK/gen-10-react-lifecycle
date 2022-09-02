@@ -26,6 +26,12 @@ export default function LifeCycleFunction () {
 		setCarts(keranjangSekarang)
 	}
 
+	function hapusKeranjang (indexYgAkanDihapus) {
+		const keranjangSekarang = [...carts]
+		keranjangSekarang.splice(indexYgAkanDihapus, 1)
+		setCarts(keranjangSekarang)
+	}
+
 	useEffect(() => {
 		setProducts(productsFromAPi)
 	}, [])
@@ -58,11 +64,11 @@ export default function LifeCycleFunction () {
 
 		<h4>Daftar Keranjang:</h4>
 		<ul>
-			{carts.map(cart =>
+			{carts.map((cart, indexCart) =>
 				<li>
-					{cart.name} | Rp. {cart.price}
+					{indexCart} . {cart.name} | Rp. {cart.price}
 
-					<button>
+					<button onClick={() => hapusKeranjang(indexCart)}>
 						- hapus
 					</button>
 				</li>
