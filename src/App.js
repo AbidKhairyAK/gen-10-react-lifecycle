@@ -1,9 +1,8 @@
 import "./App.css";
-import LifeCycleClass from "./LifeCylceClass";
-import LatihanLifeCycle from "./latihanLifeCycle";
+import LifeCycleClassTask from "./LifeCycleClassTask";
 
 function App() {
-  return <LatihanLifeCycle />;
+  return <LifeCycleClassTask />;
 }
 
 export default App;
