@@ -31,6 +31,9 @@ export default class LifeCycleClass extends React.Component {
 	}
 
 	componentDidUpdate (prevProps, prevState) {
+		console.log(prevProps.iniContohProps) // hai bambang
+		console.log(this.props.iniContohProps) // hai samsul
+
 		if (prevState.carts.length !== this.state.carts.length ) {
 
 			let totalHarga = 0;
@@ -55,6 +58,8 @@ export default class LifeCycleClass extends React.Component {
 
 		return (
 			<>
+				{this.props.iniContohProps}
+
 				<p>Total Harga: {this.state.totalPrice}</p>
 
 				<p>Daftar Produk:</p>
