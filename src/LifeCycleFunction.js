@@ -18,6 +18,7 @@ const productsFromAPi = [
 export default function LifeCycleFunction () {
 	const [products, setProducts] = useState([])
 	const [carts, setCarts] = useState([])
+	const [totalPrice, setTotalPrice] = useState(0)
 
 	function tambahkanKeKeranjang (produkYangAkanDitambahkan) {
 		const keranjangSekarang = [...carts]
@@ -29,8 +30,18 @@ export default function LifeCycleFunction () {
 		setProducts(productsFromAPi)
 	}, [])
 
+	useEffect(() => {
+		let countTotalPrice = 0
+
+		for (const cart of carts) {
+			countTotalPrice = countTotalPrice + cart.price
+		}
+
+		setTotalPrice(countTotalPrice)
+	}, [carts])
+
 	return <>
-		<p>total harga: 0</p>
+		<p>total harga: {totalPrice}</p>
 
 		<h4>Daftar Produk:</h4>
 		<ul>
